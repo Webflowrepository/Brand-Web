@@ -185,6 +185,103 @@
             color: white;
         }
 
+        /* ═══ Argent Loop — Infinite Slider ═══ */
+        @keyframes argent-slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .argent-slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .argent-slider::before,
+        .argent-slider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .argent-slider::before {
+            left: 0;
+            background: linear-gradient(to right, white, transparent);
+        }
+
+        .argent-slider::after {
+            right: 0;
+            background: linear-gradient(to left, white, transparent);
+        }
+
+        .argent-track {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            width: max-content;
+            animation: argent-slide 20s linear infinite;
+            will-change: transform;
+        }
+
+        .argent-track:hover {
+            animation-play-state: paused;
+        }
+
+        .argent-item {
+            flex-shrink: 0;
+            padding: 0 1rem;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.35;
+        }
+
+        .argent-item:hover {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        .argent-item span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.08em;
+            color: #8a8a8a;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: linear-gradient(135deg, #a8a8a8 0%, #c0c0c0 40%, #e8e8e8 50%, #c0c0c0 60%, #a8a8a8 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .argent-item:hover span {
+            background: linear-gradient(135deg, #3a3a3a 0%, #555 40%, #888 50%, #555 60%, #3a3a3a 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .argent-divider {
+            flex-shrink: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c0c0c0, #e0e0e0);
+            opacity: 0.4;
+        }
+
         @media (prefers-reduced-motion: reduce) {
 
             *,
@@ -501,13 +598,44 @@
                     </div>
                 </div>
                 <div class="fade-up reveal-scroll">
-                    <div class="grid grid-cols-3 gap-6 items-center opacity-40">
-                        <div class="text-center font-display font-bold text-lg text-gray-400">AURA</div>
-                        <div class="text-center font-display font-bold text-lg text-gray-400">MAISON K</div>
-                        <div class="text-center font-display font-bold text-lg text-gray-400">NEO TOKYO</div>
-                        <div class="text-center font-display font-bold text-lg text-gray-400">ORBITAL</div>
-                        <div class="text-center font-display font-bold text-lg text-gray-400">VÉRTEX</div>
-                        <div class="text-center font-display font-bold text-lg text-gray-400">AETHER</div>
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400 mb-6">Confían en nosotros</p>
+                    <div class="argent-slider">
+                        <div class="argent-track">
+                            <!-- Set 1 -->
+                            <div class="argent-item"><span>AURA FINANCE</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>MAISON K</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>NEO TOKYO</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>ORBITAL</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>VÉRTEX</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>AETHER</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>STRATOS</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>HALCÓN</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <!-- Set 2 (duplicate for seamless loop) -->
+                            <div class="argent-item"><span>AURA FINANCE</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>MAISON K</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>NEO TOKYO</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>ORBITAL</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>VÉRTEX</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>AETHER</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>STRATOS</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                            <div class="argent-item"><span>HALCÓN</span></div>
+                            <div class="argent-divider" aria-hidden="true"></div>
+                        </div>
                     </div>
                 </div>
             </div>
