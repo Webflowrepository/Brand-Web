@@ -1,63 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NEXAR es una agencia de branding y diseño digital que construye sistemas visuales y estrategias para empresas que redefinen el futuro. Madrid & Buenos Aires.">
-    <title>NEXAR | Brand & Digital Agency</title>
-    
+    <meta name="description"
+        content="Tu negocio creció. Tu marca no. NEXAR construye la marca que tu empresa ya debería tener. Diagnóstico gratuito en 48h.">
+    <title>NEXAR | Construimos la marca que tu empresa ya debería tener</title>
+
     <!-- Fonts: Space Grotesk (Tech/Modern) & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'nexar-blue': '#001aff', /* El azul eléctrico de tu logo */
+                        'nexar-blue': '#001aff',
                         'nexar-dark': '#050505',
                         'nexar-gray': '#F3F3F3',
+                        'nexar-accent': '#D4503A',
+                        'nexar-accent-hover': '#BF3E2D',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         display: ['Space Grotesk', 'sans-serif'],
                     },
-                    animation: {
-                        'spin-slow': 'spin 12s linear infinite',
-                        'marquee': 'marquee 25s linear infinite',
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        }
-                    }
                 }
             }
         }
     </script>
 
     <style>
-        /* Smooth Scroll & Base Settings */
         html {
             scroll-behavior: smooth;
         }
+
         html.lenis {
             height: auto;
         }
+
         body {
             background-color: #001aff;
             color: #ffffff;
             overflow-x: hidden;
         }
 
-        /* Custom Cursor — visual enhancement only, native cursor preserved */
         .cursor-dot,
         .cursor-outline {
             position: fixed;
@@ -68,12 +64,14 @@
             z-index: 9999;
             pointer-events: none;
         }
+
         .cursor-dot {
             width: 8px;
             height: 8px;
             background-color: white;
             mix-blend-mode: difference;
         }
+
         .cursor-outline {
             width: 40px;
             height: 40px;
@@ -81,38 +79,38 @@
             transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
             mix-blend-mode: difference;
         }
-        
-        /* Hover interactions for cursor */
-        body:hover .cursor-outline {
-            width: 40px;
-            height: 40px;
-        }
-        a:hover ~ .cursor-outline,
-        button:hover ~ .cursor-outline,
-        .hover-target:hover ~ .cursor-outline {
+
+        a:hover~.cursor-outline,
+        button:hover~.cursor-outline,
+        .hover-target:hover~.cursor-outline {
             width: 80px;
             height: 80px;
             background-color: rgba(255, 255, 255, 0.1);
             border-color: transparent;
-            backdrop-filter: blur(2px);
         }
 
-        /* Typography Styles */
         .text-fluid-h1 {
-            font-size: clamp(3rem, 8vw, 10rem);
-            line-height: 0.9;
+            font-size: clamp(2.5rem, 7vw, 8rem);
+            line-height: 0.95;
             letter-spacing: -0.03em;
         }
 
-        /* Reveal Animations (Cosmos Vibe) */
+        .text-fluid-h2 {
+            font-size: clamp(2rem, 5vw, 5rem);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
         .reveal-text {
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
         }
+
         .reveal-text span {
             display: inline-block;
             transform: translateY(110%);
             transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
+
         .is-visible .reveal-text span {
             transform: translateY(0);
         }
@@ -120,36 +118,31 @@
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
+
         .is-visible.fade-up {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Image Hover/Focus Effects — contained within overflow:hidden to prevent layout shift */
         .project-card:hover .project-img,
         .project-card:focus-within .project-img {
             transform: scale(1.05);
         }
+
         .project-card:hover .project-overlay,
         .project-card:focus-within .project-overlay {
             opacity: 1;
         }
 
-        /* Focus-visible styles for keyboard navigation */
         a:focus-visible,
         button:focus-visible {
             outline: 2px solid currentColor;
             outline-offset: 4px;
             border-radius: 2px;
         }
-        .project-card a:focus-visible {
-            outline: 2px solid #001aff;
-            outline-offset: 4px;
-        }
 
-        /* Skip to content link */
         .skip-link {
             position: absolute;
             top: -100%;
@@ -162,275 +155,435 @@
             border-radius: 0 0 4px 4px;
             transition: top 0.2s ease;
         }
+
         .skip-link:focus {
             top: 0;
         }
 
-        /* Respect reduced-motion preference */
+        /* Form styles */
+        .form-field {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 16px 20px;
+            width: 100%;
+            font-size: 16px;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-field:focus {
+            outline: none;
+            border-color: #D4503A;
+        }
+
+        .form-field::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-field option {
+            background: #050505;
+            color: white;
+        }
+
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
+
             .reveal-text span {
                 transform: translateY(0);
             }
+
             .fade-up {
                 opacity: 1;
                 transform: translateY(0);
             }
-            .cursor-dot, .cursor-outline {
+
+            .cursor-dot,
+            .cursor-outline {
                 display: none;
             }
         }
     </style>
 </head>
+
 <body class="font-sans antialiased selection:bg-white selection:text-nexar-blue">
 
-    <!-- Skip to content link for keyboard users -->
     <a href="#main-content" class="skip-link">Saltar al contenido</a>
-
-    <!-- Custom Cursor Elements -->
     <div class="cursor-dot hidden md:block"></div>
     <div class="cursor-outline hidden md:block"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white" role="navigation" aria-label="Navegación principal">
-        <!-- Logo -->
-        <a href="#" class="block w-12 h-12 md:w-16 md:h-16 cursor-pointer hover:scale-105 transition-transform duration-300" aria-label="NEXAR — Ir al inicio">
-            <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k" alt="NEXAR Logo" class="w-full h-full object-contain">
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white"
+        role="navigation" aria-label="Navegación principal">
+        <a href="#"
+            class="block w-12 h-12 md:w-16 md:h-16 cursor-pointer hover:scale-105 transition-transform duration-300"
+            aria-label="NEXAR — Ir al inicio">
+            <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k"
+                alt="NEXAR Logo" class="w-full h-full object-contain">
         </a>
-
         <div class="hidden md:flex gap-12 font-display text-sm uppercase tracking-widest">
-            <a href="#work" class="hover-target cursor-pointer relative group overflow-hidden">
-                <span class="block transition-transform duration-300 group-hover:-translate-y-full">Proyectos</span>
-                <span class="absolute top-0 left-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0" aria-hidden="true">Proyectos</span>
+            <a href="#method" class="hover-target cursor-pointer relative group overflow-hidden">
+                <span class="block transition-transform duration-300 group-hover:-translate-y-full">Método</span>
+                <span
+                    class="absolute top-0 left-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0"
+                    aria-hidden="true">Método</span>
             </a>
-            <a href="#agency" class="hover-target cursor-pointer relative group overflow-hidden">
-                <span class="block transition-transform duration-300 group-hover:-translate-y-full">Agencia</span>
-                <span class="absolute top-0 left-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0" aria-hidden="true">Agencia</span>
+            <a href="#work" class="hover-target cursor-pointer relative group overflow-hidden">
+                <span class="block transition-transform duration-300 group-hover:-translate-y-full">Resultados</span>
+                <span
+                    class="absolute top-0 left-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0"
+                    aria-hidden="true">Resultados</span>
+            </a>
+            <a href="#contact" class="hover-target cursor-pointer relative group overflow-hidden">
+                <span class="block transition-transform duration-300 group-hover:-translate-y-full">Diagnóstico</span>
+                <span
+                    class="absolute top-0 left-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0"
+                    aria-hidden="true">Diagnóstico</span>
             </a>
         </div>
-
-        <button class="hover-target cursor-pointer border border-white/30 px-6 py-2 rounded-full font-display text-xs uppercase tracking-widest hover:bg-white hover:text-nexar-blue transition-all duration-300" aria-label="Contactar a NEXAR">
-            Hablemos
-        </button>
+        <a href="#contact"
+            class="hover-target cursor-pointer border border-white/30 px-6 py-2 rounded-full font-display text-xs uppercase tracking-widest hover:bg-white hover:text-nexar-blue transition-all duration-300">
+            Diagnosticá tu marca →
+        </a>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header id="main-content" class="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-12 pt-20 bg-nexar-blue text-white overflow-hidden" role="banner">
-        <!-- Background Grain/Noise (Optional texture) -->
-        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,...'); filter: contrast(150%) brightness(100%);" aria-hidden="true"></div>
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 1: HERO — Tension + Qualification  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <header id="main-content"
+        class="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-12 pt-20 bg-nexar-blue text-white overflow-hidden"
+        role="banner">
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true"></div>
 
         <div class="max-w-[90vw] z-10">
             <h1 class="font-display text-fluid-h1 font-bold">
-                <div class="reveal-text overflow-hidden"><span>NOSOTROS NO</span></div>
-                <div class="reveal-text overflow-hidden"><span class="ml-[10vw] md:ml-[15vw]">HACEMOS</span></div>
-                <div class="reveal-text overflow-hidden"><span>SOLO BRANDING.</span></div>
+                <div class="reveal-text overflow-hidden"><span>TU NEGOCIO</span></div>
+                <div class="reveal-text overflow-hidden"><span class="ml-[10vw] md:ml-[15vw]">CRECIÓ.</span></div>
+                <div class="reveal-text overflow-hidden"><span>TU MARCA NO.</span></div>
             </h1>
         </div>
 
-        <div class="flex flex-col md:flex-row justify-between items-end mt-12 md:mt-24 pb-12 border-b border-white/20 fade-up reveal-scroll">
-            <div class="max-w-md">
+        <div
+            class="flex flex-col md:flex-row justify-between items-end mt-12 md:mt-24 pb-12 border-b border-white/20 fade-up reveal-scroll">
+            <div class="max-w-lg">
                 <p class="text-lg md:text-xl font-light leading-relaxed opacity-90">
-                    Construimos sistemas visuales y estrategias digitales para las empresas que están redefiniendo el futuro.
+                    Cada día que tu marca no refleja el nivel de tu empresa, perdés clientes que podrían pagar más,
+                    quedarse más tiempo y recomendarte sin que lo pidas.
                 </p>
+                <a href="#contact"
+                    class="inline-block mt-8 bg-nexar-accent hover:bg-nexar-accent-hover text-white px-8 py-4 rounded-full font-display text-sm uppercase tracking-widest transition-all duration-200 cursor-pointer hover:scale-[1.02]">
+                    Diagnosticá el desfase →
+                </a>
             </div>
             <div class="mt-8 md:mt-0 flex gap-4 items-center">
                 <div class="w-3 h-3 bg-white rounded-full animate-pulse" aria-hidden="true"></div>
-                <span class="font-mono text-sm uppercase">Based in Madrid &amp; Buenos Aires</span>
+                <span class="font-mono text-sm uppercase">Madrid &amp; Buenos Aires</span>
             </div>
-        </div>
-
-        <!-- Floating Logo Element (Background Decoration) -->
-        <div class="absolute -right-20 top-1/4 w-[50vw] opacity-10 blur-3xl pointer-events-none" aria-hidden="true">
-             <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k" alt="" class="w-full rotate-12">
         </div>
     </header>
 
-    <!-- MARQUEE / TICKER -->
-    <div class="w-full py-6 bg-white text-nexar-blue overflow-hidden border-b border-nexar-blue z-20 relative" role="marquee" aria-label="Servicios: Estrategia, Identidad, Web Design, Art Direction">
-        <div class="whitespace-nowrap flex animate-marquee" aria-hidden="true">
-            <span class="text-4xl md:text-6xl font-display font-bold px-8 uppercase">Estrategia — Identidad — Web Design — Art Direction —</span>
-            <span class="text-4xl md:text-6xl font-display font-bold px-8 uppercase">Estrategia — Identidad — Web Design — Art Direction —</span>
-            <span class="text-4xl md:text-6xl font-display font-bold px-8 uppercase">Estrategia — Identidad — Web Design — Art Direction —</span>
-        </div>
-    </div>
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 2: THE PROBLEM — Pain Validation   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="bg-nexar-gray text-nexar-dark py-24 md:py-32 px-6 md:px-12" aria-labelledby="problem-heading">
+        <div class="max-w-6xl mx-auto">
+            <h2 id="problem-heading"
+                class="font-mono text-sm uppercase mb-16 tracking-widest text-gray-400 fade-up reveal-scroll">Si esto te
+                suena familiar, no estás solo</h2>
 
-    <!-- SELECTED WORK -->
-    <section id="work" class="bg-nexar-gray text-nexar-dark py-32 px-6 md:px-12" aria-labelledby="work-heading">
-        <div class="flex justify-between items-end mb-20 fade-up reveal-scroll">
-            <h2 id="work-heading" class="font-display text-6xl md:text-8xl font-bold tracking-tighter text-nexar-blue">
-                OBRAS<br>SELECCIONADAS
-            </h2>
-            <div class="hidden md:block text-right">
-                <p class="font-mono text-sm">(2024 — 2026)</p>
-                <p class="font-mono text-sm">CASOS DE ESTUDIO</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+                <div class="fade-up reveal-scroll">
+                    <p class="font-display text-2xl md:text-3xl font-bold leading-tight mb-4 text-nexar-dark">"Tu marca
+                        dice una cosa. Tu equipo de ventas dice otra."</p>
+                    <p class="text-gray-500 text-base leading-relaxed">Pérdida de coherencia → pérdida de confianza →
+                        ciclo de venta que se alarga sin razón aparente.</p>
+                </div>
+                <div class="fade-up reveal-scroll">
+                    <p class="font-display text-2xl md:text-3xl font-bold leading-tight mb-4 text-nexar-dark">"Tus
+                        clientes no pueden explicar por qué te eligen."</p>
+                    <p class="text-gray-500 text-base leading-relaxed">Sin diferencial percibido → competencia por
+                        precio → margen erosionado trimestre a trimestre.</p>
+                </div>
+                <div class="fade-up reveal-scroll">
+                    <p class="font-display text-2xl md:text-3xl font-bold leading-tight mb-4 text-nexar-dark">"Tu
+                        competencia se ve mejor, aunque vos seas mejor que ellos."</p>
+                    <p class="text-gray-500 text-base leading-relaxed">Percepción menor que realidad → pérdida de deals
+                        contra competidores inferiores.</p>
+                </div>
             </div>
-        </div>
-
-        <!-- Projects Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-24 gap-x-12">
-            
-            <!-- Project 01 -->
-            <a href="#" class="project-card group cursor-pointer fade-up reveal-scroll block" aria-label="Ver caso de estudio: Aura Finance — Fintech / Rebranding">
-                <div class="relative overflow-hidden aspect-[4/5] md:aspect-[3/3] rounded-sm mb-6">
-                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" alt="Proyecto de rebranding para Aura Finance, plataforma fintech" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy">
-                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300" aria-hidden="true">
-                        <span class="border border-white text-white px-6 py-2 rounded-full font-display uppercase tracking-widest text-sm">Ver Caso</span>
-                    </div>
-                </div>
-                <div class="flex justify-between items-start border-t border-black/10 pt-4">
-                    <div>
-                        <h3 class="text-3xl font-display font-bold mb-1">Aura Finance</h3>
-                        <p class="text-sm font-mono text-gray-500">Fintech / Rebranding</p>
-                    </div>
-                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors duration-200" aria-hidden="true">↗</span>
-                </div>
-            </a>
-
-            <!-- Project 02 (Offset) -->
-            <a href="#" class="project-card group cursor-pointer md:mt-32 fade-up reveal-scroll delay-100 block" aria-label="Ver caso de estudio: Maison K — Fashion / eCommerce">
-                <div class="relative overflow-hidden aspect-[4/5] md:aspect-[3/3] rounded-sm mb-6">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" alt="Proyecto de eCommerce para Maison K, marca de moda" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy">
-                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300" aria-hidden="true">
-                        <span class="border border-white text-white px-6 py-2 rounded-full font-display uppercase tracking-widest text-sm">Ver Caso</span>
-                    </div>
-                </div>
-                <div class="flex justify-between items-start border-t border-black/10 pt-4">
-                    <div>
-                        <h3 class="text-3xl font-display font-bold mb-1">Maison K</h3>
-                        <p class="text-sm font-mono text-gray-500">Fashion / eCommerce</p>
-                    </div>
-                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors duration-200" aria-hidden="true">↗</span>
-                </div>
-            </a>
-
-            <!-- Project 03 -->
-            <a href="#" class="project-card group cursor-pointer fade-up reveal-scroll block" aria-label="Ver caso de estudio: Neo Tokyo — Real Estate / 3D Web">
-                <div class="relative overflow-hidden aspect-[4/5] md:aspect-[3/3] rounded-sm mb-6">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop" alt="Proyecto de diseño web 3D para Neo Tokyo, real estate" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy">
-                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300" aria-hidden="true">
-                        <span class="border border-white text-white px-6 py-2 rounded-full font-display uppercase tracking-widest text-sm">Ver Caso</span>
-                    </div>
-                </div>
-                <div class="flex justify-between items-start border-t border-black/10 pt-4">
-                    <div>
-                        <h3 class="text-3xl font-display font-bold mb-1">Neo Tokyo</h3>
-                        <p class="text-sm font-mono text-gray-500">Real Estate / 3D Web</p>
-                    </div>
-                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors duration-200" aria-hidden="true">↗</span>
-                </div>
-            </a>
-
-             <!-- Project 04 (Offset) -->
-             <a href="#" class="project-card group cursor-pointer md:mt-32 fade-up reveal-scroll delay-100 block" aria-label="Ver caso de estudio: Orbital — Tech / App Design">
-                <div class="relative overflow-hidden aspect-[4/5] md:aspect-[3/3] rounded-sm mb-6">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop" alt="Proyecto de diseño de app para Orbital, empresa tech" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy">
-                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300" aria-hidden="true">
-                        <span class="border border-white text-white px-6 py-2 rounded-full font-display uppercase tracking-widest text-sm">Ver Caso</span>
-                    </div>
-                </div>
-                <div class="flex justify-between items-start border-t border-black/10 pt-4">
-                    <div>
-                        <h3 class="text-3xl font-display font-bold mb-1">Orbital</h3>
-                        <p class="text-sm font-mono text-gray-500">Tech / App Design</p>
-                    </div>
-                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors duration-200" aria-hidden="true">↗</span>
-                </div>
-            </a>
         </div>
     </section>
 
-    <!-- MANIFESTO / BIG TEXT -->
-    <section id="agency" class="bg-white text-nexar-blue py-32 px-6 md:px-12 border-t border-nexar-blue" aria-labelledby="agency-heading">
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 3: THE SYSTEM — Framework          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="method" class="bg-nexar-dark text-white py-24 md:py-32 px-6 md:px-12" aria-labelledby="method-heading">
         <div class="max-w-6xl mx-auto">
-            <h2 id="agency-heading" class="font-mono text-sm uppercase mb-12 tracking-widest text-black">02 — La Agencia</h2>
-            
-            <p class="font-display text-4xl md:text-6xl font-medium leading-[1.1] reveal-scroll fade-up">
-                En un mundo saturado de ruido, <span class="text-nexar-blue underline decoration-4 decoration-nexar-blue">la claridad es poder</span>. 
-                Combinamos la estética suiza con la velocidad de Silicon Valley. 
-                No buscamos ser los más grandes, buscamos ser los más inolvidables.
+            <h2 id="method-heading"
+                class="font-mono text-sm uppercase mb-6 tracking-widest text-gray-500 fade-up reveal-scroll">Nuestro
+                método</h2>
+            <p class="font-display text-fluid-h2 font-bold mb-20 max-w-4xl fade-up reveal-scroll">
+                No necesitás otra marca bonita.<br>Necesitás una que <span class="text-nexar-accent">venda sola.</span>
             </p>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 border-t border-gray-200 pt-12">
-                <div class="fade-up reveal-scroll delay-100">
-                    <h4 class="font-bold text-xl mb-4 text-black">Estrategia</h4>
-                    <ul class="text-gray-600 space-y-2 font-mono text-sm">
-                        <li>Brand Audit</li>
-                        <li>Posicionamiento</li>
-                        <li>Tono de Voz</li>
-                    </ul>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-0 border border-white/10 rounded-sm">
+                <!-- Phase 1 -->
+                <div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-white/10 fade-up reveal-scroll">
+                    <span class="font-mono text-xs text-nexar-accent uppercase tracking-widest">Fase 01 — 2
+                        semanas</span>
+                    <h3 class="font-display text-2xl md:text-3xl font-bold mt-4 mb-4">Diagnóstico Brutal</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">Analizamos tu marca, tu mercado y tu competencia. Sin
+                        maquillaje. Te mostramos exactamente dónde perdés dinero por tu marca actual.</p>
+                    <p class="font-mono text-sm text-white/60">→ Entregable: Auditoría de marca + mapa de oportunidades
+                    </p>
                 </div>
-                <div class="fade-up reveal-scroll delay-200">
-                    <h4 class="font-bold text-xl mb-4 text-black">Diseño</h4>
-                    <ul class="text-gray-600 space-y-2 font-mono text-sm">
-                        <li>Identidad Visual</li>
-                        <li>UI/UX Design</li>
-                        <li>Motion Graphics</li>
-                    </ul>
+                <!-- Phase 2 -->
+                <div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-white/10 fade-up reveal-scroll">
+                    <span class="font-mono text-xs text-nexar-accent uppercase tracking-widest">Fase 02 — 3
+                        semanas</span>
+                    <h3 class="font-display text-2xl md:text-3xl font-bold mt-4 mb-4">Ingeniería de Marca</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">Construimos el sistema visual y verbal que conecta tu
+                        posicionamiento con el comportamiento de compra de tu cliente ideal.</p>
+                    <p class="font-mono text-sm text-white/60">→ Entregable: Identidad completa + guía de marca</p>
                 </div>
-                <div class="fade-up reveal-scroll delay-300">
-                    <h4 class="font-bold text-xl mb-4 text-black">Desarrollo</h4>
-                    <ul class="text-gray-600 space-y-2 font-mono text-sm">
-                        <li>Creative Frontend</li>
-                        <li>eCommerce (Shopify)</li>
-                        <li>Web3 Solutions</li>
-                    </ul>
-                </div>
-                <div class="fade-up reveal-scroll delay-400">
-                    <h4 class="font-bold text-xl mb-4 text-black">Premios</h4>
-                    <ul class="text-gray-600 space-y-2 font-mono text-sm">
-                        <li>Awwwards SOTD x4</li>
-                        <li>Clio Awards Silver</li>
-                        <li>Behance Featured</li>
-                    </ul>
+                <!-- Phase 3 -->
+                <div class="p-8 md:p-12 fade-up reveal-scroll">
+                    <span class="font-mono text-xs text-nexar-accent uppercase tracking-widest">Fase 03 — 2
+                        semanas</span>
+                    <h3 class="font-display text-2xl md:text-3xl font-bold mt-4 mb-4">Activación Digital</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">Llevamos tu marca al mundo real: web, redes,
+                        materiales de venta. Todo alineado, todo coherente, todo listo para generar tracción.</p>
+                    <p class="font-mono text-sm text-white/60">→ Entregable: Web + kit de implementación</p>
                 </div>
             </div>
+
+            <div class="mt-12 text-center fade-up reveal-scroll">
+                <a href="#work"
+                    class="inline-block font-display text-sm uppercase tracking-widest text-white/60 hover:text-white transition-colors duration-200 cursor-pointer">
+                    Así funciona en la práctica ↓
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 4: PROOF — Real Cases with Results  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="work" class="bg-nexar-gray text-nexar-dark py-24 md:py-32 px-6 md:px-12"
+        aria-labelledby="work-heading">
+        <div class="max-w-6xl mx-auto">
+            <h2 id="work-heading"
+                class="font-mono text-sm uppercase mb-16 tracking-widest text-gray-400 fade-up reveal-scroll">Resultados
+                reales</h2>
+
+            <!-- Case 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-24 items-center fade-up reveal-scroll">
+                <div class="relative overflow-hidden aspect-[4/3] rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop"
+                        alt="Rebranding de Aura Finance: nueva identidad visual premium para plataforma fintech"
+                        class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div>
+                    <span class="font-mono text-xs text-gray-400 uppercase tracking-widest">Aura Finance —
+                        Fintech</span>
+                    <h3 class="font-display text-3xl md:text-4xl font-bold mt-3 mb-6">De "otra fintech más" a la
+                        referencia visual del sector.</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex gap-4 items-start">
+                            <span class="font-mono text-sm text-gray-400 shrink-0 mt-1">ANTES:</span>
+                            <p class="text-gray-600">Marca genérica que no comunicaba confianza. Ciclo de venta de 45
+                                días.</p>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <span class="font-mono text-sm text-nexar-accent shrink-0 mt-1">DESPUÉS:</span>
+                            <p class="text-nexar-dark font-medium">Identidad premium que redujo el ciclo de venta a 22
+                                días. Percepción de precio +40%.</p>
+                        </div>
+                    </div>
+                    <p class="font-display text-4xl font-bold text-nexar-blue">-51% ciclo de venta</p>
+                </div>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-24 items-center fade-up reveal-scroll">
+                <div class="md:order-2 relative overflow-hidden aspect-[4/3] rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop"
+                        alt="Rebranding de Maison K: nueva identidad para marca de moda premium"
+                        class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="md:order-1">
+                    <span class="font-mono text-xs text-gray-400 uppercase tracking-widest">Maison K — Fashion</span>
+                    <h3 class="font-display text-3xl md:text-4xl font-bold mt-3 mb-6">Triplicaron ventas online sin
+                        bajar un solo precio.</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex gap-4 items-start">
+                            <span class="font-mono text-sm text-gray-400 shrink-0 mt-1">ANTES:</span>
+                            <p class="text-gray-600">Marca que competía por precio. Clientes no repetían. Identidad
+                                invisible en redes.</p>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <span class="font-mono text-sm text-nexar-accent shrink-0 mt-1">DESPUÉS:</span>
+                            <p class="text-nexar-dark font-medium">Sistema visual que convierte. Tasa de recompra +65%.
+                                Revenue eCommerce ×3.</p>
+                        </div>
+                    </div>
+                    <p class="font-display text-4xl font-bold text-nexar-blue">×3 revenue online</p>
+                </div>
+            </div>
+
+            <!-- Case 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center fade-up reveal-scroll">
+                <div class="relative overflow-hidden aspect-[4/3] rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop"
+                        alt="Rebranding de Neo Tokyo: nueva identidad para desarrolladora inmobiliaria"
+                        class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div>
+                    <span class="font-mono text-xs text-gray-400 uppercase tracking-widest">Neo Tokyo — Real
+                        Estate</span>
+                    <h3 class="font-display text-3xl md:text-4xl font-bold mt-3 mb-6">Pasaron de perder licitaciones a
+                        ganarlas por percepción.</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex gap-4 items-start">
+                            <span class="font-mono text-sm text-gray-400 shrink-0 mt-1">ANTES:</span>
+                            <p class="text-gray-600">Marca que no transmitía la escala real de la empresa. Perdían
+                                contra competidores más chicos.</p>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <span class="font-mono text-sm text-nexar-accent shrink-0 mt-1">DESPUÉS:</span>
+                            <p class="text-nexar-dark font-medium">Presencia visual que refleja envergadura. Win rate en
+                                licitaciones +80%.</p>
+                        </div>
+                    </div>
+                    <p class="font-display text-4xl font-bold text-nexar-blue">+80% win rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 5: CREDENTIAL — Minimal About       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="agency" class="bg-white text-nexar-dark py-24 md:py-32 px-6 md:px-12" aria-labelledby="agency-heading">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="fade-up reveal-scroll">
+                    <h2 id="agency-heading" class="font-mono text-sm uppercase mb-8 tracking-widest text-gray-400">Quién
+                        está detrás</h2>
+                    <p class="font-display text-3xl md:text-4xl font-bold leading-tight mb-6">
+                        12 años construyendo marcas que no necesitan explicar por qué cobran lo que cobran.
+                    </p>
+                    <p class="text-gray-500 text-lg leading-relaxed mb-8">
+                        +60 marcas lanzadas entre Madrid y Buenos Aires. Desde fintechs en Serie A hasta estudios de
+                        arquitectura con 30 años de historia. Todas tenían el mismo problema: su marca no estaba a la
+                        altura de su empresa.
+                    </p>
+                    <div class="flex gap-12 font-mono text-sm">
+                        <div>
+                            <p class="text-3xl font-display font-bold text-nexar-blue">60+</p>
+                            <p class="text-gray-400">Marcas</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-display font-bold text-nexar-blue">12</p>
+                            <p class="text-gray-400">Años</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-display font-bold text-nexar-blue">2</p>
+                            <p class="text-gray-400">Ciudades</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-up reveal-scroll">
+                    <div class="grid grid-cols-3 gap-6 items-center opacity-40">
+                        <div class="text-center font-display font-bold text-lg text-gray-400">AURA</div>
+                        <div class="text-center font-display font-bold text-lg text-gray-400">MAISON K</div>
+                        <div class="text-center font-display font-bold text-lg text-gray-400">NEO TOKYO</div>
+                        <div class="text-center font-display font-bold text-lg text-gray-400">ORBITAL</div>
+                        <div class="text-center font-display font-bold text-lg text-gray-400">VÉRTEX</div>
+                        <div class="text-center font-display font-bold text-lg text-gray-400">AETHER</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 6: CONVERSION — Diagnostic Form     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section id="contact" class="bg-nexar-dark text-white py-24 md:py-32 px-6 md:px-12"
+        aria-labelledby="contact-heading">
+        <div class="max-w-3xl mx-auto">
+            <h2 id="contact-heading" class="font-display text-fluid-h2 font-bold mb-6 fade-up reveal-scroll">
+                Si llegaste hasta acá, tu marca probablemente necesita esto.
+            </h2>
+            <p class="text-gray-400 text-lg mb-12 fade-up reveal-scroll">
+                Completá 3 preguntas. En 48 horas recibís un diagnóstico personalizado de tu marca. Sin costo. Sin
+                compromiso. Sin pitch escondido.
+            </p>
+
+            <form class="space-y-6 fade-up reveal-scroll" id="diagnostic-form"
+                onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Enviado — te escribimos en 48h'; this.querySelector('button').disabled = true;">
+                <div>
+                    <label for="company"
+                        class="block font-mono text-xs uppercase tracking-widest text-gray-500 mb-2">¿Cuál es tu
+                        empresa?</label>
+                    <input type="text" id="company" name="company" placeholder="Nombre + URL de tu empresa"
+                        class="form-field rounded-sm" required>
+                </div>
+                <div>
+                    <label for="frustration"
+                        class="block font-mono text-xs uppercase tracking-widest text-gray-500 mb-2">¿Qué es lo que más
+                        te frustra de tu marca actual?</label>
+                    <textarea id="frustration" name="frustration" rows="3"
+                        placeholder="Contanos en 2-3 líneas qué no está funcionando..."
+                        class="form-field rounded-sm resize-none" required></textarea>
+                </div>
+                <div>
+                    <label for="revenue"
+                        class="block font-mono text-xs uppercase tracking-widest text-gray-500 mb-2">¿Cuánto facturás
+                        por año?</label>
+                    <select id="revenue" name="revenue" class="form-field rounded-sm" required>
+                        <option value="" disabled selected>Seleccioná un rango</option>
+                        <option value="<500K">&lt; $500K USD</option>
+                        <option value="500K-2M">$500K — $2M USD</option>
+                        <option value="2M-10M">$2M — $10M USD</option>
+                        <option value="10M+">$10M+ USD</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="email"
+                        class="block font-mono text-xs uppercase tracking-widest text-gray-500 mb-2">Email</label>
+                    <input type="email" id="email" name="email" placeholder="tu@empresa.com"
+                        class="form-field rounded-sm" required>
+                </div>
+                <button type="submit"
+                    class="w-full bg-nexar-accent hover:bg-nexar-accent-hover text-white py-4 rounded-sm font-display text-sm uppercase tracking-widest transition-all duration-200 cursor-pointer hover:scale-[1.01] mt-4">
+                    Quiero el diagnóstico →
+                </button>
+                <p class="text-center text-gray-600 text-xs mt-4">Respondemos dentro de 48h hábiles. Si no encajamos, te
+                    lo decimos.</p>
+            </form>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-nexar-blue text-white pt-24 pb-12 px-6 md:px-12 relative overflow-hidden" role="contentinfo">
-        
-        <!-- Big CTA -->
-        <div class="flex flex-col items-center justify-center text-center py-24 z-10 relative">
-            <p class="font-mono text-sm uppercase mb-6 tracking-widest opacity-80">¿Listo para el siguiente nivel?</p>
-            <a href="mailto:hello@nexar.agency" class="hover-target cursor-pointer font-display text-fluid-h1 font-bold leading-none hover:text-black transition-colors duration-500" aria-label="Enviar email a hello@nexar.agency">
-                HOLA@<br>NEXAR.
-            </a>
-        </div>
-
-        <!-- Background Logo -->
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 opacity-10 pointer-events-none" aria-hidden="true">
-            <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k" alt="" class="w-[80vw]">
-        </div>
-
-        <!-- Bottom Bar -->
-        <div class="flex flex-col md:flex-row justify-between items-end border-t border-white/20 pt-8 mt-12 z-20 relative">
-            <div class="mb-6 md:mb-0">
-                <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k" alt="Logo Small" class="w-12 h-12 grayscale brightness-200">
+    <footer class="bg-nexar-blue text-white py-8 px-6 md:px-12" role="contentinfo">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k"
+                alt="NEXAR Logo" class="w-10 h-10 object-contain">
+            <div class="flex gap-8 font-mono text-xs uppercase tracking-widest">
+                <a href="#" class="hover:underline cursor-pointer">Instagram</a>
+                <a href="#" class="hover:underline cursor-pointer">LinkedIn</a>
+                <a href="mailto:hello@nexar.agency" class="hover:underline cursor-pointer">hello@nexar.agency</a>
             </div>
-            
-            <div class="flex flex-col md:flex-row gap-8 md:gap-16 font-mono text-xs uppercase tracking-widest">
-                <div class="flex flex-col gap-2">
-                    <span class="opacity-50">Social</span>
-                    <a href="#" class="hover:underline cursor-pointer" aria-label="NEXAR en Instagram">Instagram</a>
-                    <a href="#" class="hover:underline cursor-pointer" aria-label="NEXAR en LinkedIn">LinkedIn</a>
-                    <a href="#" class="hover:underline cursor-pointer" aria-label="NEXAR en Awwwards">Awwwards</a>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <span class="opacity-50">Legal</span>
-                    <a href="#" class="hover:underline cursor-pointer">Privacidad</a>
-                    <a href="#" class="hover:underline cursor-pointer">Términos</a>
-                </div>
-                <div class="flex flex-col gap-2 text-right md:text-left">
-                    <span class="opacity-50">©2026 NEXAR Agency</span>
-                    <span>All rights reserved.</span>
-                </div>
-            </div>
+            <span class="font-mono text-xs opacity-50">©2026 NEXAR Agency</span>
         </div>
     </footer>
 
@@ -467,9 +620,9 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        
+
                         // If it's the hero text container, trigger child spans
-                        if(entry.target.querySelector('.reveal-text span')) {
+                        if (entry.target.querySelector('.reveal-text span')) {
                             const spans = entry.target.querySelectorAll('.reveal-text span');
                             spans.forEach((span, index) => {
                                 setTimeout(() => {
@@ -492,4 +645,5 @@
         });
     </script>
 </body>
+
 </html>
