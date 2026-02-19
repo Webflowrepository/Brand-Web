@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NEXAR es una agencia de branding y diseño digital que construye sistemas visuales y estrategias para empresas que redefinen el futuro. Madrid & Buenos Aires.">
     <title>NEXAR | Brand & Digital Agency</title>
     
     <!-- Fonts: Space Grotesk (Tech/Modern) & Inter -->
@@ -44,17 +45,19 @@
 
     <style>
         /* Smooth Scroll & Base Settings */
+        html {
+            scroll-behavior: smooth;
+        }
         html.lenis {
             height: auto;
         }
         body {
-            background-color: #001aff; /* Fondo azul por defecto para evitar flash blanco */
+            background-color: #001aff;
             color: #ffffff;
-            cursor: none; /* Ocultamos cursor nativo para usar uno custom */
             overflow-x: hidden;
         }
 
-        /* Custom Cursor */
+        /* Custom Cursor — visual enhancement only, native cursor preserved */
         .cursor-dot,
         .cursor-outline {
             position: fixed;
@@ -69,12 +72,14 @@
             width: 8px;
             height: 8px;
             background-color: white;
+            mix-blend-mode: difference;
         }
         .cursor-outline {
             width: 40px;
             height: 40px;
             border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+            mix-blend-mode: difference;
         }
         
         /* Hover interactions for cursor */
@@ -122,48 +127,102 @@
             transform: translateY(0);
         }
 
-        /* Image Hover Effects */
-        .project-card:hover .project-img {
+        /* Image Hover/Focus Effects — contained within overflow:hidden to prevent layout shift */
+        .project-card:hover .project-img,
+        .project-card:focus-within .project-img {
             transform: scale(1.05);
         }
-        .project-card:hover .project-overlay {
+        .project-card:hover .project-overlay,
+        .project-card:focus-within .project-overlay {
             opacity: 1;
+        }
+
+        /* Focus-visible styles for keyboard navigation */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+        .project-card a:focus-visible {
+            outline: 2px solid #001aff;
+            outline-offset: 4px;
+        }
+
+        /* Skip to content link */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 16px;
+            z-index: 10000;
+            background: white;
+            color: #001aff;
+            padding: 8px 16px;
+            font-weight: 600;
+            border-radius: 0 0 4px 4px;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Respect reduced-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal-text span {
+                transform: translateY(0);
+            }
+            .fade-up {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .cursor-dot, .cursor-outline {
+                display: none;
+            }
         }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-white selection:text-nexar-blue">
+
+    <!-- Skip to content link for keyboard users -->
+    <a href="#main-content" class="skip-link">Saltar al contenido</a>
 
     <!-- Custom Cursor Elements -->
     <div class="cursor-dot hidden md:block"></div>
     <div class="cursor-outline hidden md:block"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
-        <!-- Logo from provided URL -->
-        <a href="#" class="block w-12 h-12 md:w-16 md:h-16 hover:scale-105 transition-transform duration-300">
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white" role="navigation" aria-label="Navegación principal">
+        <!-- Logo -->
+        <a href="#" class="block w-12 h-12 md:w-16 md:h-16 cursor-pointer hover:scale-105 transition-transform duration-300" aria-label="NEXAR — Ir al inicio">
             <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k" alt="NEXAR Logo" class="w-full h-full object-contain">
         </a>
 
         <div class="hidden md:flex gap-12 font-display text-sm uppercase tracking-widest">
-            <a href="#work" class="hover-target relative group overflow-hidden">
+            <a href="#work" class="hover-target cursor-pointer relative group overflow-hidden">
                 <span class="block transition-transform duration-300 group-hover:-translate-y-full">Proyectos</span>
-                <span class="absolute top-0 left-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0">Proyectos</span>
+                <span class="absolute top-0 left-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0" aria-hidden="true">Proyectos</span>
             </a>
-            <a href="#agency" class="hover-target relative group overflow-hidden">
+            <a href="#agency" class="hover-target cursor-pointer relative group overflow-hidden">
                 <span class="block transition-transform duration-300 group-hover:-translate-y-full">Agencia</span>
-                <span class="absolute top-0 left-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0">Agencia</span>
+                <span class="absolute top-0 left-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0" aria-hidden="true">Agencia</span>
             </a>
         </div>
 
-        <button class="hover-target border border-white/30 px-6 py-2 rounded-full font-display text-xs uppercase tracking-widest hover:bg-white hover:text-nexar-blue transition-all duration-300">
+        <button class="hover-target cursor-pointer border border-white/30 px-6 py-2 rounded-full font-display text-xs uppercase tracking-widest hover:bg-white hover:text-nexar-blue transition-all duration-300" aria-label="Contactar a NEXAR">
             Hablemos
         </button>
     </nav>
 
     <!-- HERO SECTION -->
-    <header class="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-12 pt-20 bg-nexar-blue text-white overflow-hidden">
+    <header id="main-content" class="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-12 pt-20 bg-nexar-blue text-white overflow-hidden" role="banner">
         <!-- Background Grain/Noise (Optional texture) -->
-        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,...'); filter: contrast(150%) brightness(100%);"></div>
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,...'); filter: contrast(150%) brightness(100%);" aria-hidden="true"></div>
 
         <div class="max-w-[90vw] z-10">
             <h1 class="font-display text-fluid-h1 font-bold">
@@ -180,20 +239,20 @@
                 </p>
             </div>
             <div class="mt-8 md:mt-0 flex gap-4 items-center">
-                <div class="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+                <div class="w-3 h-3 bg-white rounded-full animate-pulse" aria-hidden="true"></div>
                 <span class="font-mono text-sm uppercase">Based in Madrid &amp; Buenos Aires</span>
             </div>
         </div>
 
         <!-- Floating Logo Element (Background Decoration) -->
-        <div class="absolute -right-20 top-1/4 w-[50vw] opacity-10 blur-3xl pointer-events-none">
-             <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k" class="w-full rotate-12">
+        <div class="absolute -right-20 top-1/4 w-[50vw] opacity-10 blur-3xl pointer-events-none" aria-hidden="true">
+             <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k" alt="" class="w-full rotate-12">
         </div>
     </header>
 
     <!-- MARQUEE / TICKER -->
-    <div class="w-full py-6 bg-white text-nexar-blue overflow-hidden border-b border-nexar-blue z-20 relative">
-        <div class="whitespace-nowrap flex animate-marquee">
+    <div class="w-full py-6 bg-white text-nexar-blue overflow-hidden border-b border-nexar-blue z-20 relative" role="marquee" aria-label="Servicios: Estrategia, Identidad, Web Design, Art Direction">
+        <div class="whitespace-nowrap flex animate-marquee" aria-hidden="true">
             <span class="text-4xl md:text-6xl font-display font-bold px-8 uppercase">Estrategia — Identidad — Web Design — Art Direction —</span>
             <span class="text-4xl md:text-6xl font-display font-bold px-8 uppercase">Estrategia — Identidad — Web Design — Art Direction —</span>
             <span class="text-4xl md:text-6xl font-display font-bold px-8 uppercase">Estrategia — Identidad — Web Design — Art Direction —</span>
@@ -201,9 +260,9 @@
     </div>
 
     <!-- SELECTED WORK -->
-    <section id="work" class="bg-nexar-gray text-nexar-dark py-32 px-6 md:px-12">
+    <section id="work" class="bg-nexar-gray text-nexar-dark py-32 px-6 md:px-12" aria-labelledby="work-heading">
         <div class="flex justify-between items-end mb-20 fade-up reveal-scroll">
-            <h2 class="font-display text-6xl md:text-8xl font-bold tracking-tighter text-nexar-blue">
+            <h2 id="work-heading" class="font-display text-6xl md:text-8xl font-bold tracking-tighter text-nexar-blue">
                 OBRAS<br>SELECCIONADAS
             </h2>
             <div class="hidden md:block text-right">
@@ -216,10 +275,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-y-24 gap-x-12">
             
             <!-- Project 01 -->
-            <div class="project-card group cursor-pointer fade-up reveal-scroll">
+            <a href="#" class="project-card group cursor-pointer fade-up reveal-scroll block" aria-label="Ver caso de estudio: Aura Finance — Fintech / Rebranding">
                 <div class="relative overflow-hidden aspect-[4/5] md:aspect-[3/3] rounded-sm mb-6">
-                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" alt="Project 1" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out">
-                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" alt="Proyecto de rebranding para Aura Finance, plataforma fintech" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300" aria-hidden="true">
                         <span class="border border-white text-white px-6 py-2 rounded-full font-display uppercase tracking-widest text-sm">Ver Caso</span>
                     </div>
                 </div>
@@ -228,15 +287,15 @@
                         <h3 class="text-3xl font-display font-bold mb-1">Aura Finance</h3>
                         <p class="text-sm font-mono text-gray-500">Fintech / Rebranding</p>
                     </div>
-                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors">↗</span>
+                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors duration-200" aria-hidden="true">↗</span>
                 </div>
-            </div>
+            </a>
 
             <!-- Project 02 (Offset) -->
-            <div class="project-card group cursor-pointer md:mt-32 fade-up reveal-scroll delay-100">
+            <a href="#" class="project-card group cursor-pointer md:mt-32 fade-up reveal-scroll delay-100 block" aria-label="Ver caso de estudio: Maison K — Fashion / eCommerce">
                 <div class="relative overflow-hidden aspect-[4/5] md:aspect-[3/3] rounded-sm mb-6">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" alt="Project 2" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out">
-                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" alt="Proyecto de eCommerce para Maison K, marca de moda" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300" aria-hidden="true">
                         <span class="border border-white text-white px-6 py-2 rounded-full font-display uppercase tracking-widest text-sm">Ver Caso</span>
                     </div>
                 </div>
@@ -245,15 +304,15 @@
                         <h3 class="text-3xl font-display font-bold mb-1">Maison K</h3>
                         <p class="text-sm font-mono text-gray-500">Fashion / eCommerce</p>
                     </div>
-                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors">↗</span>
+                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors duration-200" aria-hidden="true">↗</span>
                 </div>
-            </div>
+            </a>
 
             <!-- Project 03 -->
-            <div class="project-card group cursor-pointer fade-up reveal-scroll">
+            <a href="#" class="project-card group cursor-pointer fade-up reveal-scroll block" aria-label="Ver caso de estudio: Neo Tokyo — Real Estate / 3D Web">
                 <div class="relative overflow-hidden aspect-[4/5] md:aspect-[3/3] rounded-sm mb-6">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop" alt="Project 3" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out">
-                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop" alt="Proyecto de diseño web 3D para Neo Tokyo, real estate" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300" aria-hidden="true">
                         <span class="border border-white text-white px-6 py-2 rounded-full font-display uppercase tracking-widest text-sm">Ver Caso</span>
                     </div>
                 </div>
@@ -262,15 +321,15 @@
                         <h3 class="text-3xl font-display font-bold mb-1">Neo Tokyo</h3>
                         <p class="text-sm font-mono text-gray-500">Real Estate / 3D Web</p>
                     </div>
-                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors">↗</span>
+                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors duration-200" aria-hidden="true">↗</span>
                 </div>
-            </div>
+            </a>
 
              <!-- Project 04 (Offset) -->
-             <div class="project-card group cursor-pointer md:mt-32 fade-up reveal-scroll delay-100">
+             <a href="#" class="project-card group cursor-pointer md:mt-32 fade-up reveal-scroll delay-100 block" aria-label="Ver caso de estudio: Orbital — Tech / App Design">
                 <div class="relative overflow-hidden aspect-[4/5] md:aspect-[3/3] rounded-sm mb-6">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop" alt="Project 4" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out">
-                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop" alt="Proyecto de diseño de app para Orbital, empresa tech" class="project-img w-full h-full object-cover transition-transform duration-700 ease-out" loading="lazy">
+                    <div class="project-overlay absolute inset-0 bg-nexar-blue/80 flex items-center justify-center opacity-0 transition-opacity duration-300" aria-hidden="true">
                         <span class="border border-white text-white px-6 py-2 rounded-full font-display uppercase tracking-widest text-sm">Ver Caso</span>
                     </div>
                 </div>
@@ -279,16 +338,16 @@
                         <h3 class="text-3xl font-display font-bold mb-1">Orbital</h3>
                         <p class="text-sm font-mono text-gray-500">Tech / App Design</p>
                     </div>
-                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors">↗</span>
+                    <span class="text-3xl font-display group-hover:text-nexar-blue transition-colors duration-200" aria-hidden="true">↗</span>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
     <!-- MANIFESTO / BIG TEXT -->
-    <section class="bg-white text-nexar-blue py-32 px-6 md:px-12 border-t border-nexar-blue">
+    <section id="agency" class="bg-white text-nexar-blue py-32 px-6 md:px-12 border-t border-nexar-blue" aria-labelledby="agency-heading">
         <div class="max-w-6xl mx-auto">
-            <h3 class="font-mono text-sm uppercase mb-12 tracking-widest text-black">02 — La Agencia</h3>
+            <h2 id="agency-heading" class="font-mono text-sm uppercase mb-12 tracking-widest text-black">02 — La Agencia</h2>
             
             <p class="font-display text-4xl md:text-6xl font-medium leading-[1.1] reveal-scroll fade-up">
                 En un mundo saturado de ruido, <span class="text-nexar-blue underline decoration-4 decoration-nexar-blue">la claridad es poder</span>. 
@@ -334,19 +393,19 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-nexar-blue text-white pt-24 pb-12 px-6 md:px-12 relative overflow-hidden">
+    <footer class="bg-nexar-blue text-white pt-24 pb-12 px-6 md:px-12 relative overflow-hidden" role="contentinfo">
         
         <!-- Big CTA -->
         <div class="flex flex-col items-center justify-center text-center py-24 z-10 relative">
             <p class="font-mono text-sm uppercase mb-6 tracking-widest opacity-80">¿Listo para el siguiente nivel?</p>
-            <a href="mailto:hello@nexar.agency" class="hover-target font-display text-fluid-h1 font-bold leading-none hover:text-black transition-colors duration-500">
+            <a href="mailto:hello@nexar.agency" class="hover-target cursor-pointer font-display text-fluid-h1 font-bold leading-none hover:text-black transition-colors duration-500" aria-label="Enviar email a hello@nexar.agency">
                 HOLA@<br>NEXAR.
             </a>
         </div>
 
         <!-- Background Logo -->
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 opacity-10 pointer-events-none">
-            <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k" class="w-[80vw]">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 opacity-10 pointer-events-none" aria-hidden="true">
+            <img src="https://file-service.chatgpt.com/auth/content/attachment/file-7B1hGgQ33tK9qf6WqR14k" alt="" class="w-[80vw]">
         </div>
 
         <!-- Bottom Bar -->
@@ -358,14 +417,14 @@
             <div class="flex flex-col md:flex-row gap-8 md:gap-16 font-mono text-xs uppercase tracking-widest">
                 <div class="flex flex-col gap-2">
                     <span class="opacity-50">Social</span>
-                    <a href="#" class="hover:underline">Instagram</a>
-                    <a href="#" class="hover:underline">LinkedIn</a>
-                    <a href="#" class="hover:underline">Awwwards</a>
+                    <a href="#" class="hover:underline cursor-pointer" aria-label="NEXAR en Instagram">Instagram</a>
+                    <a href="#" class="hover:underline cursor-pointer" aria-label="NEXAR en LinkedIn">LinkedIn</a>
+                    <a href="#" class="hover:underline cursor-pointer" aria-label="NEXAR en Awwwards">Awwwards</a>
                 </div>
                 <div class="flex flex-col gap-2">
                     <span class="opacity-50">Legal</span>
-                    <a href="#" class="hover:underline">Privacidad</a>
-                    <a href="#" class="hover:underline">Términos</a>
+                    <a href="#" class="hover:underline cursor-pointer">Privacidad</a>
+                    <a href="#" class="hover:underline cursor-pointer">Términos</a>
                 </div>
                 <div class="flex flex-col gap-2 text-right md:text-left">
                     <span class="opacity-50">©2026 NEXAR Agency</span>
